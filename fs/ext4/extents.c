@@ -904,7 +904,7 @@ static int ext4_ext_split(handle_t *handle, struct inode *inode,
 		err = -EIO;
 		goto cleanup;
 	}
-	bh = sb_getblk(inode->i_sb, newblock);
+	bh = sb_getblk_gfp(inode->i_sb, newblock, __GFP_MOVABLE | GFP_NOFS);
 	if (!bh) {
 		err = -ENOMEM;
 		goto cleanup;
